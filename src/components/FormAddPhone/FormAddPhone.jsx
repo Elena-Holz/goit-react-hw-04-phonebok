@@ -1,39 +1,39 @@
 import PropTypes from "prop-types";
 
-import { Component } from "react";
+import { useState } from "react";
 import { nanoid } from "nanoid";
 import css from 'components/FormAddPhone/FormAddPhone.module.css'
 
-export default class FormAddPhone extends Component {
-    state = {
-        name: '',
-        number: '',
-    }
-  
-    nameId = nanoid();
-    numberId = nanoid();
-
-    handelChange = (event) => {
+export default function FormAddPhone({onSubmit}) {
+    const [name, setName] = useState('');
+    const [number, setNumber] = useState('');
+    
+    const nameId = nanoid();
+    const numberId = nanoid();
+   
+    const handelChange = (event) => {
         const { name, value } = event.target;
-        this.setState({
-            [name]: value,
-        })
-    }
-  
-    handelSabmit = (event) => {
+        switch (name) {
+            case 'name':
+                return setName(value);
+            case 'number':
+                return setNumber(value);
+            
+            default:
+                return;
+        }
+       }
+      
+   
+    const handelSabmit = (event) => {
         event.preventDefault();
-        const { name, number } = this.state;
-        this.props.onSubmit({ name, number });
-        this.setState({
-            name: '',
-            number: '',
-        })
-    }
+        onSubmit({ name, number });
+        setName((name) => name = '');
+        setNumber((number) => number = '');
+        }
 
-    render() {
-        const { nameId, numberId, handelSabmit, handelChange } = this;
-        const { name, number } = this.state;
-        return (
+
+return (
                 <form onSubmit={handelSabmit}>
                     <div className={css.formGrup}>
                         <label className={css.titleInput} htmlFor="name">Name</label><br />
@@ -63,9 +63,11 @@ export default class FormAddPhone extends Component {
                     </div>
                     <button className={css.button}>Add contact</button>
                 </form>
-        )
+    )
+    
     }
-}
+
+
 
 FormAddPhone.propTypes = {
 
