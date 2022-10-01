@@ -1,0 +1,16 @@
+.listItem {
+    font-size: 25px;
+    text-align: center;
+    color: rgb(97, 97, 144);
+}
+
+.deleteItem {
+    font-size: 15px;
+    text-align: center;
+    color: rgb(18, 17, 17);
+    border: 1px solid;
+    border-color: rgb(75, 21, 21);
+    ;
+    background-color: rgb(245, 216, 216);
+    border-radius: 2px;
+}
