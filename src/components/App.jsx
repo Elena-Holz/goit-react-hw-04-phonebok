@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 export function App() {
   
   const [contacts, setContacts] = useState(() => {
-    const value = JSON.parse(localStorage.getItem("books"));
+    const value = JSON.parse(localStorage.getItem("contacts"));
     return value ?? [];
   });
  
@@ -19,11 +19,11 @@ useEffect(() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts])
 
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem("contacts");
-    }
-  }, [])
+  // useEffect(() => {
+  //   return () => {
+  //     localStorage.removeItem("contacts");
+  //   }
+  // }, [])
 
 const addContact = (contact) => {
      if (isCopy(contact)) {
